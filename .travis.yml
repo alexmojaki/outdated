@@ -8,6 +8,8 @@ python:
   - 3.6
 script:
   - python setup.py install
-  - python tests.py
+  - pip install coveralls
+  - coverage run --source=outdated python tests.py
+  - coveralls
 notifications:
   email: false
