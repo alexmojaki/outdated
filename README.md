@@ -15,7 +15,7 @@ To install:
 This will:
 
 - Show a warning if the given version is not the latest. The warning includes the package name, the given version, and the latest version.
-- Perform the check in a background daemon thread (so it doesn't delay anything)
+- Perform the check in a background thread (so it doesn't delay anything)
 - Make at most one HTTP call (unless there is an HTTP error, in which case it will try 3 times) to the PyPI server for that specific package
 - Cache the result of the HTTP call on disk for 24 hours
 - Show a warning if any exception occurs during the check
@@ -27,7 +27,6 @@ The package name argument must be exactly the name used on PyPI, so that e.g. ht
 Optional arguments:
 
 - `background` (default `True`): run the check in a separate thread. Set to `False` to run immediately.
-- `daemon` (default: `True`): if `background` is `True`, make the thread daemonic. This means that when the overall process ends, the check will stop if it hasn't completed. Has no effect if `background` is `False`.
 - `raise_exceptions` (default: `False`): if `True`, allow exceptions to bubble to the top. Otherwise, show a warning including the exception message. If `background` is `True` and this is `True` then this will result in a full traceback showing but the process continuing.
 
 ## Lower level API

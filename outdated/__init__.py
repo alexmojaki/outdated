@@ -47,7 +47,7 @@ def warn_if_outdated(package,
                      version,
                      raise_exceptions=False,
                      background=True,
-                     daemon=True):
+                     ):
     def check():
         # noinspection PyUnusedLocal
         is_outdated = False
@@ -63,7 +63,6 @@ def warn_if_outdated(package,
 
     if background:
         thread = Thread(target=check)
-        thread.daemon = daemon
         thread.start()
     else:
         check()
