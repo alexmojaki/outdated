@@ -1,5 +1,5 @@
 import unittest
-from warnings import catch_warnings
+from warnings import catch_warnings, filterwarnings
 from contextlib import contextmanager
 from uuid import uuid4
 
@@ -45,10 +45,12 @@ class OutdatedTests(unittest.TestCase):
     @contextmanager
     def assert_warns(self, category, message):
         with catch_warnings(record=True) as w:
+            filterwarnings("ignore", "^Not importing directory .+ missing __init__$", ImportWarning)
             yield
-            self.assertEqual(len(w), 1)
-            self.assertEqual(w[0].category, category)
-            self.assertEqual(str(w[0].message), message)
+            failure_message = "Warnings found: %s" % [x.message for x in w]
+            self.assertEqual(len(w), 1, failure_message)
+            self.assertEqual(w[0].category, category, failure_message)
+            self.assertEqual(str(w[0].message), message, failure_message)
 
     def test_basic(self):
         with disable_cache():
