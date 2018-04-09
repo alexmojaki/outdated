@@ -18,7 +18,9 @@ This will:
 - Cache the result of the HTTP call on disk for 24 hours
 - Show a warning if any exception occurs during the check
 
-This will *not* check what version is currently installed, it will only use the given version. Library authors must make sure that the version in their `setup.py` matches the version here. 
+This will *not* check what version is currently installed, it will only use the given version. Library authors must make sure that the version in their `setup.py` matches the version here.
+
+The package name argument must be exactly the name used on PyPI, so that e.g. https://pypi.python.org/pypi/my-package-name is a valid URL.
 
 Optional arguments:
 
@@ -36,4 +38,6 @@ This still makes the HTTP call with retries and caches the result on disk. It do
 
 ## Additional configuration
 
-TODO
+To always raise exceptions instead of converting them to warnings (both in general in `warn_if_outdated` and more specifically when there's a caching problem) set the environment variable `OUTDATED_RAISE_EXCEPTION=1`.
+
+The warnings are also categorised so that you can easily control them with standard [warning filters](https://docs.python.org/3/library/warnings.html#the-warnings-filter). The classes are [here](https://github.com/alexmojaki/outdated/blob/master/outdated/mywarnings.py) and can be imported directly from the `outdated` module.
