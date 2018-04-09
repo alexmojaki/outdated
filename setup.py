@@ -9,6 +9,7 @@ setup(name='outdated',
       author_email='alex.mojaki@gmail.com',
       license='MIT',
       packages=['outdated'],
+      install_requires=['littleutils'],
       classifiers=[
             'License :: OSI Approved :: MIT License',
             'Programming Language :: Python',

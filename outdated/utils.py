@@ -2,10 +2,9 @@ import os
 import tempfile
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from time import sleep
 from warnings import warn
 
-import functools
+from littleutils import retry
 
 from outdated.mywarnings import OutdatedCacheFailedWarning
 
@@ -16,24 +15,6 @@ def format_date(dt):
 
 def cache_is_valid(cache_dt):
     return format_date(datetime.now() - timedelta(days=1)) < cache_dt
-
-
-def retry(num_attempts=3, exception_class=Exception, sleeptime=1):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            for i in range(num_attempts):
-                try:
-                    return func(*args, **kwargs)
-                except exception_class:
-                    if i == num_attempts - 1:
-                        raise
-                    else:
-                        sleep(sleeptime)
-
-        return wrapper
-
-    return decorator
 
 
 # noinspection PyCompatibility
