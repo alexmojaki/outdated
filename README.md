@@ -1,5 +1,7 @@
 # outdated
 
+[![Build Status](https://travis-ci.org/alexmojaki/outdated.svg?branch=master)](https://travis-ci.org/alexmojaki/outdated)
+
 This is a mini-library which, given a package name and a version, checks if it's the latest version available on PyPI.
 
 To install:
