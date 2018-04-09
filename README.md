@@ -1,6 +1,6 @@
 # outdated
 
-[![Build Status](https://travis-ci.org/alexmojaki/outdated.svg?branch=master)](https://travis-ci.org/alexmojaki/outdated)
+[![Build Status](https://travis-ci.org/alexmojaki/outdated.svg?branch=master)](https://travis-ci.org/alexmojaki/outdated) [![Coverage Status](https://coveralls.io/repos/github/alexmojaki/outdated/badge.svg?branch=master)](https://coveralls.io/github/alexmojaki/outdated?branch=master)
 
 This is a mini-library which, given a package name and a version, checks if it's the latest version available on PyPI.
 
