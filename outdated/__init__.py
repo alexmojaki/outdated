@@ -67,3 +67,6 @@ def warn_if_outdated(package,
         thread.start()
     else:
         check()
+
+
+warn_if_outdated('outdated', __version__)
