@@ -10,6 +10,19 @@ __version__ = '0.1.0'
 
 
 def check_outdated(package, version):
+    """
+    Given the name of a package on PyPI and a version (both strings), checks
+    if the given version is the latest version of the package available.
+
+    Returns a 2-tuple (is_outdated, latest_version) where
+    is_outdated is a boolean which is True if the given version is earlier
+    than the latest version, which is the string latest_version.
+
+    Attempts to cache on disk the HTTP call it makes for 24 hours. If this
+    somehow fails the exception is converted to a warning (OutdatedCacheFailedWarning)
+    and the function continues normally.
+    """
+
     from pkg_resources import parse_version
 
     parsed_version = parse_version(version)
@@ -17,7 +30,7 @@ def check_outdated(package, version):
 
     with utils.cache_file(package, 'r') as f:
         content = f.read()
-        if content:
+        if content:  # in case cache_file fails and so f is a dummy file
             latest, cache_dt = json.loads(content)
             if not utils.cache_is_valid(cache_dt):
                 latest = None
@@ -48,6 +61,26 @@ def warn_if_outdated(package,
                      raise_exceptions=False,
                      background=True,
                      ):
+    """
+    Higher level convenience function using check_outdated.
+
+    The package and version arguments are the same.
+
+    If the package is outdated, a warning (OutdatedPackageWarning) will
+    be emitted.
+
+    Any exception in check_outdated will be converted to a warning (OutdatedCheckFailedWarning)
+    unless raise_exceptions if True.
+
+    If background is True (the default), the check will run in
+    a background thread so this function will return immediately.
+    In this case if an exception is raised and raise_exceptions if True
+    the traceback will be printed to stderr but the program will not be
+    interrupted.
+
+    This function doesn't return anything.
+    """
+
     def check():
         # noinspection PyUnusedLocal
         is_outdated = False
