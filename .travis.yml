@@ -9,7 +9,7 @@ python:
 script:
   - python setup.py install
   - pip install coveralls
-  - coverage run --source=outdated python tests.py
+  - coverage run --source=outdated tests.py
   - coveralls
 notifications:
   email: false
