@@ -10,6 +10,8 @@ To install:
 
 ## Quickstart:
 
+    from outdated import warn_if_outdated
+
     warn_if_outdated('my-package-name', '1.2.3')
 
 This will:
@@ -30,6 +32,8 @@ Optional arguments:
 - `raise_exceptions` (default: `False`): if `True`, allow exceptions to bubble to the top. Otherwise, show a warning including the exception message. If `background` is `True` and this is `True` then this will result in a full traceback showing but the process continuing.
 
 ## Lower level API
+
+    from outdated import check_outdated
 
     is_outdated, latest_version = check_outdated('my-package-name', '1.2.3')
     
