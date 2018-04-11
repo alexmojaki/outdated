@@ -90,14 +90,18 @@ def exception_to_warning(description, category, always_raise=False):
     try:
         yield
     except Exception as e:
-        if always_raise or os.environ.get('OUTDATED_RAISE_EXCEPTION') == '1':
+        # We check for the presence of various globals because we may be seeing the death
+        # of the process if this is in a background thread, during which globals
+        # get 'cleaned up' and set to None
+        if always_raise or os and os.environ and os.environ.get('OUTDATED_RAISE_EXCEPTION') == '1':
             raise
 
-        warn('Failed to %s:\n'
-             '%s\n'
-             'Set the environment variable OUTDATED_RAISE_EXCEPTION=1 for a full traceback.'
-             % (description, e),
-             category)
+        if warn:
+            warn('Failed to %s:\n'
+                 '%s\n'
+                 'Set the environment variable OUTDATED_RAISE_EXCEPTION=1 for a full traceback.'
+                 % (description, e),
+                 category)
 
 
 def constantly(x):
