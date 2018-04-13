@@ -1,6 +1,6 @@
 # outdated
 
-[![Build Status](https://travis-ci.org/alexmojaki/outdated.svg?branch=master)](https://travis-ci.org/alexmojaki/outdated) [![Coverage Status](https://coveralls.io/repos/github/alexmojaki/outdated/badge.svg?branch=master)](https://coveralls.io/github/alexmojaki/outdated?branch=master) [![Supports Python versions 2.7, 3.3, 3.4, 3.5, and 3.6](https://img.shields.io/pypi/pyversions/outdated.svg)](https://pypi.python.org/pypi/outdated)
+[![Build Status](https://travis-ci.org/alexmojaki/outdated.svg?branch=master)](https://travis-ci.org/alexmojaki/outdated) [![Coverage Status](https://coveralls.io/repos/github/alexmojaki/outdated/badge.svg?branch=master&uncache)](https://coveralls.io/github/alexmojaki/outdated?branch=master) [![Supports Python versions 2.7, 3.3, 3.4, 3.5, and 3.6](https://img.shields.io/pypi/pyversions/outdated.svg)](https://pypi.python.org/pypi/outdated)
 
 This is a mini-library which, given a package name and a version, checks if it's the latest version available on PyPI.
 
