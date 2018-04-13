@@ -6,7 +6,7 @@ from warnings import warn
 from outdated import utils
 from outdated.mywarnings import *
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 
 def check_outdated(package, version):
@@ -35,16 +35,25 @@ def check_outdated(package, version):
             if not utils.cache_is_valid(cache_dt):
                 latest = None
 
-    if latest is None:
+    def get_latest():
         url = 'https://pypi.python.org/pypi/%s/json' % package
         response = utils.get_url(url)
-        latest = json.loads(response)['info']['version']
+        return json.loads(response)['info']['version']
+
+    if latest is None:
+        latest = get_latest()
 
     parsed_latest = parse_version(latest)
 
     if parsed_version > parsed_latest:
-        raise ValueError('Version %s is greater than the latest version on PyPI: %s' %
-                         (version, latest))
+
+        # Probably a stale cached value
+        latest = get_latest()
+        parsed_latest = parse_version(latest)
+
+        if parsed_version > parsed_latest:
+            raise ValueError('Version %s is greater than the latest version on PyPI: %s' %
+                             (version, latest))
 
     is_latest = parsed_version == parsed_latest
     assert is_latest or parsed_version < parsed_latest

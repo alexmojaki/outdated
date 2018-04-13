@@ -109,9 +109,18 @@ class OutdatedTests(unittest.TestCase):
 
         warn_if_outdated(self.package, self.version)
 
-    def test_package_from_future(self):
-        with self.assertRaises(ValueError):
-            check_outdated(self.package, '5.0')
+    def test_stale_cache_new_package(self):
+        with fresh_cache():
+            self.example_check()  # caches the older latest version
+
+            with self.assertRaises(ValueError):
+                check_outdated(self.package, '5.0')
+
+            # Suppose that a new version comes out and has just been installed:
+            # the cache must be refreshed
+            with mock(utils.get_url, constantly('{"info": {"version": "5.0"}}')):
+                self.assertEqual(check_outdated(self.package, '5.0'),
+                                 (False, '5.0'))
 
 
 if __name__ == '__main__':
