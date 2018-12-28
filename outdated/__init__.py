@@ -1,12 +1,12 @@
 import json
 from datetime import datetime
 from threading import Thread
-from warnings import warn
 
 from outdated import utils
 from outdated.mywarnings import *
+from outdated.utils import warn_with_ignore
 
-__version__ = '0.1.2'
+__version__ = '0.2.0'
 
 
 def check_outdated(package, version):
@@ -93,15 +93,17 @@ def warn_if_outdated(package,
     def check():
         # noinspection PyUnusedLocal
         is_outdated = False
-        with utils.exception_to_warning('check for latest version of %s' % package,
+        with utils.exception_to_warning('check for latest version of package',
                                         OutdatedCheckFailedWarning,
                                         always_raise=raise_exceptions):
             is_outdated, latest = check_outdated(package, version)
 
         if is_outdated:
-            warn('The package %s is out of date. Your version is %s, the latest is %s.'
-                 % (package, version, latest),
-                 OutdatedPackageWarning)
+            warn_with_ignore(
+                'The package %s is out of date. Your version is %s, the latest is %s.'
+                % (package, version, latest),
+                OutdatedPackageWarning,
+            )
 
     if background:
         thread = Thread(target=check)
