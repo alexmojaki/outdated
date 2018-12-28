@@ -44,6 +44,7 @@ class OutdatedTests(unittest.TestCase):
 
     @contextmanager
     def assert_warns(self, category, message):
+        message += '\nSet the environment variable OUTDATED_IGNORE=1 to disable these warnings.'
         with catch_warnings(record=True) as w:
             filterwarnings("ignore", "^Not importing directory .+ missing __init__$", ImportWarning)
             yield

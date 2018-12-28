@@ -10,6 +10,15 @@ from littleutils import retry
 from outdated.mywarnings import OutdatedCacheFailedWarning
 
 
+def warn_with_ignore(message, *args, **kwargs):
+    return warn(
+        message +
+        '\nSet the environment variable OUTDATED_IGNORE=1 to disable these warnings.',
+        *args,
+        **kwargs
+    )
+
+
 def format_date(dt):
     return dt.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -90,11 +99,13 @@ def exception_to_warning(description, category, always_raise=False):
         if always_raise or os and os.environ and os.environ.get('OUTDATED_RAISE_EXCEPTION') == '1':
             raise
 
-        if warn:
-            warn('Failed to %s.\n'
-                 'Set the environment variable OUTDATED_RAISE_EXCEPTION=1 for a full traceback.'
-                 % description,
-                 category)
+        if warn_with_ignore:
+            warn_with_ignore(
+                'Failed to %s.\n'
+                'Set the environment variable OUTDATED_RAISE_EXCEPTION=1 for a full traceback.'
+                % description,
+                category,
+            )
 
 
 def constantly(x):
