@@ -6,7 +6,7 @@ from outdated import utils
 from outdated.mywarnings import *
 from outdated.utils import warn_with_ignore
 
-__version__ = '0.1.2'
+__version__ = '0.2.0'
 
 
 def check_outdated(package, version):
