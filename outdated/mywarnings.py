@@ -14,9 +14,6 @@ class OutdatedPackageWarning(OutdatedWarningBase):
     """
 
 
-filterwarnings("always", category=OutdatedPackageWarning)
-
-
 class OutdatedCheckFailedWarning(OutdatedWarningBase):
     """
     Warning emitted when checking the version of a package fails
