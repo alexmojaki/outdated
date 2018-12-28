@@ -23,7 +23,7 @@ setup(name=package,
       author_email='alex.mojaki@gmail.com',
       license='MIT',
       packages=[package],
-      install_requires=['littleutils'],
+      install_requires=['littleutils', 'requests'],
       classifiers=[
           'License :: OSI Approved :: MIT License',
           'Programming Language :: Python',

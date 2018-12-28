@@ -4,6 +4,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from warnings import warn
 
+import requests
 from littleutils import retry
 
 from outdated.mywarnings import OutdatedCacheFailedWarning
@@ -20,13 +21,7 @@ def cache_is_valid(cache_dt):
 # noinspection PyCompatibility
 @retry()
 def get_url(url):
-    try:
-        from urllib.request import urlopen
-    except ImportError:
-        # noinspection PyUnresolvedReferences
-        from urllib2 import urlopen
-
-    return urlopen(url).read().decode('utf8')
+    return requests.get(url).text
 
 
 @contextmanager
