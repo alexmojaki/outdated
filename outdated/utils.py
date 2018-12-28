@@ -75,8 +75,7 @@ def get_cache_filename(package):
 def exception_to_warning(description, category, always_raise=False):
     """
     Catches any exceptions that happen in the corresponding with block
-    and instead emits a warning of the given category, with a message
-    containing the given description and the exception message,
+    and instead emits a warning of the given category,
     unless always_raise is True or the environment variable
     OUTDATED_RAISE_EXCEPTION is set to 1, in which caise the exception
     will not be caught.
@@ -84,7 +83,7 @@ def exception_to_warning(description, category, always_raise=False):
 
     try:
         yield
-    except Exception as e:
+    except Exception:
         # We check for the presence of various globals because we may be seeing the death
         # of the process if this is in a background thread, during which globals
         # get 'cleaned up' and set to None
@@ -92,10 +91,9 @@ def exception_to_warning(description, category, always_raise=False):
             raise
 
         if warn:
-            warn('Failed to %s:\n'
-                 '%s\n'
+            warn('Failed to %s.\n'
                  'Set the environment variable OUTDATED_RAISE_EXCEPTION=1 for a full traceback.'
-                 % (description, e),
+                 % description,
                  category)
 
 

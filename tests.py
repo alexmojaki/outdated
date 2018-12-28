@@ -75,8 +75,7 @@ class OutdatedTests(unittest.TestCase):
         with fail_cache():
             with self.assert_warns(
                     OutdatedCacheFailedWarning,
-                    ('Failed to use cache while checking for outdated package:\n'
-                     'Error message here\n'
+                    ('Failed to use cache while checking for outdated package.\n'
                      'Set the environment variable OUTDATED_RAISE_EXCEPTION=1 for a full traceback.')):
                 self.example_check()
                 self.example_check()
@@ -99,8 +98,7 @@ class OutdatedTests(unittest.TestCase):
             with fail_get_url():
                 with self.assert_warns(
                         OutdatedCheckFailedWarning,
-                        ('Failed to check for latest version of ask-so:\n'
-                         'Error message here\n'
+                        ('Failed to check for latest version of package.\n'
                          'Set the environment variable OUTDATED_RAISE_EXCEPTION=1 for a full traceback.')):
                     warn_if_outdated(self.package, '0.1', background=False)
 

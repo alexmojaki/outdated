@@ -93,7 +93,7 @@ def warn_if_outdated(package,
     def check():
         # noinspection PyUnusedLocal
         is_outdated = False
-        with utils.exception_to_warning('check for latest version of %s' % package,
+        with utils.exception_to_warning('check for latest version of package',
                                         OutdatedCheckFailedWarning,
                                         always_raise=raise_exceptions):
             is_outdated, latest = check_outdated(package, version)
