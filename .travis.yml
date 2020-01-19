@@ -6,10 +6,20 @@ python:
   - 3.6
   - 3.7
   - 3.8
+
+env:
+  global:
+    - COVERALLS_PARALLEL=true
+
 script:
   - python setup.py install
   - pip install coveralls
   - coverage run --source=outdated tests.py
+  - coverage report -m
+
+after_success:
   - coveralls
+
 notifications:
+  webhooks: https://coveralls.io/webhook
   email: false
