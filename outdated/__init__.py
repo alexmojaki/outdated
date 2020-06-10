@@ -36,7 +36,7 @@ def check_outdated(package, version, repository_url='https://pypi.python.org/pyp
                 latest = None
 
     def get_latest():
-        url = ( repository_url + "%s/json" ) % package
+        url = (repository_url + "%s/json") % package
         response = utils.get_url(url)
         return json.loads(response)['info']['version']
 
