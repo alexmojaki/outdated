@@ -41,7 +41,7 @@ Optional arguments:
 
 Optional arguments:
 
-- `repository_url` (default `https://pypi.python.org/pypi/%s/json`): format string to use a different repository pypi repository URL. For example test.pypi.org or a private repository. Formatter is passed the package name as the first argument.
+- `repository_url` (default `https://pypi.python.org/pypi/%s/json`): a `%` style format string to use a different repository PyPI repository URL, e.g. test.pypi.org or a private repository. The string is formatted with the package name.
 
 This still makes the HTTP call with retries and caches the result on disk. It doesn't use a separate thread or emit any warnings (unless there is an exception specifically while using the cache, in which case the check will be done without the cache).
 

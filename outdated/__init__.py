@@ -21,6 +21,11 @@ def check_outdated(package, version, repository_url='https://pypi.python.org/pyp
     Attempts to cache on disk the HTTP call it makes for 24 hours. If this
     somehow fails the exception is converted to a warning (OutdatedCacheFailedWarning)
     and the function continues normally.
+
+    `repository_url` is a `%` style format string
+    to use a different repository PyPI repository URL,
+    e.g. test.pypi.org or a private repository.
+    The string is formatted with the package name.
     """
 
     from pkg_resources import parse_version
