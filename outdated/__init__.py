@@ -9,7 +9,7 @@ from outdated.utils import warn_with_ignore
 __version__ = '0.2.0'
 
 
-def check_outdated(package, version):
+def check_outdated(package, version, repository_url='https://pypi.python.org/pypi/%s/json'):
     """
     Given the name of a package on PyPI and a version (both strings), checks
     if the given version is the latest version of the package available.
@@ -36,7 +36,7 @@ def check_outdated(package, version):
                 latest = None
 
     def get_latest():
-        url = 'https://pypi.python.org/pypi/%s/json' % package
+        url = repository_url % package
         response = utils.get_url(url)
         return json.loads(response)['info']['version']
 

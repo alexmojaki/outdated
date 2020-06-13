@@ -39,6 +39,10 @@ Optional arguments:
     
 `is_outdated` is a boolean which is True if the given version is earlier than the latest version, which is the string `latest_version`.
 
+Optional arguments:
+
+- `repository_url` (default `https://pypi.python.org/pypi/%s/json`): format string to use a different repository pypi repository URL. For example test.pypi.org or a private repository. Formatter is passed the package name as the first argument.
+
 This still makes the HTTP call with retries and caches the result on disk. It doesn't use a separate thread or emit any warnings (unless there is an exception specifically while using the cache, in which case the check will be done without the cache).
 
 ## Additional configuration
