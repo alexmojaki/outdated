@@ -15,9 +15,14 @@ with open(init_path) as f:
     contents = f.read()
 __version__ = re.search(r"__version__ = '([.\d]+)'", contents).group(1)
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(name=package,
       version=__version__,
       description='Check if a version of a PyPI package is outdated',
+      long_description=long_description,
+      long_description_content_type="text/markdown",
       url='https://github.com/alexmojaki/' + package,
       author='Alex Hall',
       author_email='alex.mojaki@gmail.com',
