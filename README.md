@@ -22,7 +22,7 @@ This will:
 - Cache the result of the HTTP call on disk for 24 hours
 - Show a warning if any exception occurs during the check
 
-This will *not* check what version is currently installed, it will only use the given version. Library authors must make sure that the version in their `setup.py` matches the version here. See the [setup.py here](https://github.com/alexmojaki/outdated/blob/master/setup.py) for one easy way to do that.
+This will *not* check what version is currently installed, it will only use the given version. Library authors must make sure that the version in their `setup.py` matches the version here.
 
 The package name argument must be exactly the name used on PyPI, so that e.g. https://pypi.python.org/pypi/my-package-name is a valid URL.
 
