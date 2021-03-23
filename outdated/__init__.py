@@ -6,7 +6,11 @@ from outdated import utils
 from outdated.mywarnings import *
 from outdated.utils import warn_with_ignore
 
-__version__ = '0.2.0'
+try:
+    from .version import __version__
+except ImportError:  # pragma: no cover
+    # version.py is auto-generated with the git tag when building
+    __version__ = "???"
 
 
 def check_outdated(package, version, repository_url='https://pypi.python.org/pypi/%s/json'):
