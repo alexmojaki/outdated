@@ -1,4 +1,5 @@
 import json
+import re
 from datetime import datetime
 from threading import Thread
 
@@ -121,4 +122,5 @@ def warn_if_outdated(package,
         check()
 
 
-warn_if_outdated('outdated', __version__)
+if re.match(r"^[\d.]+$", __version__):
+    warn_if_outdated('outdated', __version__)
