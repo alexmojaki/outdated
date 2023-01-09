@@ -1,4 +1,5 @@
 import json
+import os
 import re
 from datetime import datetime
 from threading import Thread
@@ -32,6 +33,8 @@ def check_outdated(package, version, repository_url='https://pypi.python.org/pyp
     e.g. test.pypi.org or a private repository.
     The string is formatted with the package name.
     """
+    if os.environ.get('OUTDATED_IGNORE'):
+        return
 
     from pkg_resources import parse_version
 
