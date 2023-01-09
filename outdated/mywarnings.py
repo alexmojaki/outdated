@@ -27,7 +27,3 @@ class OutdatedCacheFailedWarning(OutdatedWarningBase):
     Warning emitted when writing to or reading from the cache
     fails with an exception.
     """
-
-
-if os.environ.get('OUTDATED_IGNORE'):
-    filterwarnings("ignore", category=OutdatedWarningBase)

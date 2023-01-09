@@ -47,7 +47,7 @@ This still makes the HTTP call with retries and caches the result on disk. It do
 
 ## Additional configuration
 
-To disable all warnings from this library, set the environment variable `OUTDATED_IGNORE` to any non-empty value.
+To disable all checks from this library, set the environment variable `OUTDATED_IGNORE` to any non-empty value.
 
 To always raise exceptions instead of converting them to warnings (both in general in `warn_if_outdated` and more specifically when there's a caching problem) set the environment variable `OUTDATED_RAISE_EXCEPTION=1`.
 
