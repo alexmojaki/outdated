@@ -16,7 +16,7 @@ To install:
 
 This will:
 
-- Show a warning if the given version is not the latest. The warning includes the package name, the given version, and the latest version.
+- Show a warning if the given version is not the latest compared to the the latest version available on [PyPI](https://pypi.org) package index. The warning includes the package name, the given version, and the latest version.
 - Perform the check in a background thread (so it doesn't delay anything)
 - Make at most one HTTP call (unless there is an HTTP error, in which case it will try 3 times) to the PyPI server for that specific package
 - Cache the result of the HTTP call on disk for 24 hours
